@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: donggu-ns
+  name: tomcat-petclinic-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat-petclinic
+  template:
+    metadata:
+      labels:
+        app: tomcat-petclinic
+    spec:
+      containers:
+        - name: tomcat-petclinic
+          image: dorong9/rapa:tomcat3.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MYSQL_HOST
+              value: mysql-petclinic # 이 부분을 연결할 MySQL 서비스 이름으로 수정해야 합니다
+            - name: MYSQL_PORT
+              value: "3306"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: donggu-ns
+  name: tomcat-petclinic
+spec:
+  selector:
+    app: tomcat-petclinic
+  ports:
+    - name: nginx
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP

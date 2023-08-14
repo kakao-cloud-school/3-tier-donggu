@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: donggu-ns
+  name: mysql-petclinic-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-petclinic
+  template:
+    metadata:
+      labels:
+        app: mysql-petclinic
+    spec:
+      containers:
+        - name: mysql-petclinic
+          image: mysql:5.7.8
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: test123
+            - name: MYSQL_DATABASE
+              value: petclinic
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: donggu-ns
+  name: mysql-petclinic
+spec:
+  selector:
+    app: mysql-petclinic
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  type: ClusterIP

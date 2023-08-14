@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system  # 전에 만든 namespace.yaml 의 metadata 와 일치해야 된다.
+  name: config
+data:
+  config: |     # 가장 마지막줄 비어있는 상태로 포함
+    address-pools:    # 공인 ip 주소 설정 (211.183.3.x)
+    - name: default
+      protocol: layer2   # layer2(전체를 하나의 네트워크로 두고 ip 제공), bgp(layer3) : 라우팅이 필요할 때!!
+      addresses:
+      - 211.183.3.201-211.183.3.229
