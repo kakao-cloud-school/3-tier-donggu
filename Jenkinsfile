@@ -4,8 +4,8 @@ pipeline {
         githubPush() // GitHub에 커밋이 발생하면 자동으로 파이프라인 시작
     }
     environment {
-        REPOSITORY = "innnnnwoo"
-        DOCKERHUB_CREDENTIALS = credentials('docker_accesstkn')
+        REPOSITORY = "donggu"
+        DOCKERHUB_CREDENTIALS = credentials('docker-token')
     }
     stages {
         stage('Checkout') {
@@ -17,13 +17,13 @@ pipeline {
             steps {
                 script {
                     dir('mysql/'){
-                      def image = docker.build('innnnnwoo/d-mysql', '.')
+                      def image = docker.build('doron9/rapa:k8smysql', '.')
                     }
                     dir('nginx/'){
-                      def image = docker.build('innnnnwoo/d-nginx', '.')
+                      def image = docker.build('doron9/rapa:k8snginx'', '.')
                     }
                     dir('tomcat/'){
-                      def image = docker.build('innnnnwoo/d-tomcat', '.')
+                      def image = docker.build('doron9/rapa:k8stomcat'', '.')
                     }
                 }
             }
@@ -31,7 +31,7 @@ pipeline {
         stage('Docker Login') {
             steps {
                 script {
-                    def credentials = credentials('docker_accesstkn')
+                    def credentials = credentials('docker-token')
                     sh "echo \$DOCKERHUB_CREDENTIALS_PSW | docker login -u \$DOCKERHUB_CREDENTIALS_USR --password-stdin"
                 }
             }
@@ -39,9 +39,9 @@ pipeline {
         stage('Docker Push') {
             steps {
                 script {
-                    sh "docker push innnnnwoo/d-mysql"
-                    sh "docker push innnnnwoo/d-nginx"
-                    sh "docker push innnnnwoo/d-tomcat"
+                    sh "docker push dorong9/rapa:k8smysql"
+                    sh "docker push dorong9/rapa:k8snginx"
+                    sh "docker push dorong9/rapa:k8stomcat"
                 }
             }
         }

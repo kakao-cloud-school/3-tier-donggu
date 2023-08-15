@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: donggu-ns
-  name: nginx-petclinic
+  name: nginx-petclinic-deploy
 spec:
   replicas: 1
   selector:
