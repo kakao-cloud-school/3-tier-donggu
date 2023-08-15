@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: mysql-petclinic
-          image: dorong9/rapa:mysql3.0
+          image: dorong9/rapa:k8smysql
           ports:
             - containerPort: 3306
           env:

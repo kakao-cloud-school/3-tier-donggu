@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: nginx-petclinic
-        image: dorong9/rapa:nginx3.1
+        image: dorong9/rapa:k8snginx
         ports:
         - containerPort: 80
 ---

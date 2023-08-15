@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: tomcat-petclinic
-          image: dorong9/rapa:tomcat3.0
+          image: dorong9/rapa:k8stomcat
           ports:
             - containerPort: 8080
           env:

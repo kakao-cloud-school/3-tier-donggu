@@ -1,4 +1,12 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: metallb-system   # 별도의 namespace 의 이름이 된다
+  labels:
+    app: metallb         # 반드시 필요하지는 않지만 라벨 부착
+
+---
+apiVersion: v1
 kind: ConfigMap
 metadata:
   namespace: metallb-system  # 전에 만든 namespace.yaml 의 metadata 와 일치해야 된다.
