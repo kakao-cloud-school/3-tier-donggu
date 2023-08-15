@@ -36,3 +36,39 @@ web 폴더에서 kubectl apply -f nginx-deploy.yaml
 6. 결과확인
 kvm 내 www.donggu.pri/petclinic/
 윈도우 웹에서 211.183.3.xxx:30010/petclinic/
+
+
+tree
+petclinic-3tier
+.
+├── Jenkinsfile
+├── mysql
+│   └── Dockerfile
+├── namespace
+│   └── metallb.yaml
+├── nginx
+│   ├── conf
+│   │   └── nginx.conf
+│   └── Dockerfile
+├── README.md
+│   ├── LICENSE.txt
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml
+│   ├── readme.md
+│   ├── src
+│   └── target
+│       ├── generated-sources
+│       ├── maven-archiver
+│       ├── maven-status
+│       ├── petclinic
+│       └── petclinic.war
+├── tomcat
+│   ├── Dockerfile
+│   └── petclinic.war
+└── yaml
+    ├── my-ingress.yaml
+    ├── mysql-deploy.yaml
+    ├── namespace.yaml
+    ├── nginx-deployment.yaml
+    └── tomcat-deploy.yaml
